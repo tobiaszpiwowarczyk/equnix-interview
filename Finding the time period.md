@@ -1,4 +1,4 @@
-##Finding time period and number visitors algorithm
+## Finding time period and number visitors algorithm
 
 ### Table of contents
 1. How it works?
