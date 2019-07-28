@@ -38,6 +38,8 @@ javadoc {
 
 
 task execute() {
+    group "application"
+    
     dependsOn "build"
     dependsOn "javadoc"
     dependsOn "run"
