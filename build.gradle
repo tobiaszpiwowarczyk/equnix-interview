@@ -1,0 +1,47 @@
+
+plugins {
+    id 'com.adarshr.test-logger' version '1.7.0'
+}
+
+group "pl.equinix"
+version "1.0"
+description "Program for Equinix interview"
+
+apply plugin: "java"
+apply plugin: "application"
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+mainClassName = "pl.equinix.Main"
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile("org.junit.jupiter:junit-jupiter-api:5.4.2")
+    testCompile("org.junit.jupiter:junit-jupiter-engine:5.4.2")
+    testCompile("org.junit.jupiter:junit-jupiter-params:5.4.2")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+javadoc {
+    source = sourceSets.main.java
+    classpath = configurations.compile
+    destinationDir = file("javadoc")
+}
+
+
+task execute() {
+    dependsOn "build"
+    dependsOn "javadoc"
+    dependsOn "run"
+
+    tasks.findByName("javadoc").mustRunAfter("build")
+    tasks.findByName("run").mustRunAfter("javadoc")
+}
